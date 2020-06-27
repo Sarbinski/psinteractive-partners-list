@@ -1,0 +1,14 @@
+{
+  "printWidth": 100,
+  "parser": "typescript",
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "arrowParens": "always",
+  "tabWidth": 4,
+  "overrides": [
+    {
+      "files": ["*.json", "**/*.json"],
+      "options": { "parser": "json", "tabWidth": 4 }
+    }
+  ]
+}

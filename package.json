@@ -1,0 +1,25 @@
+{
+  "name": "company-birthday-guests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node build/index.js",
+  "scripts": {
+    "start:dev": "nodemon",
+    "start": "npm run build && node build/index.js",
+    "build": "rm -rf build/ && tsc",
+    "test": "test"
+  },
+  "author": "Stanislav Sarbinski <stansarbinski@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.1",
+    "typescript": "^3.9.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.14",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "ts-node": "^8.10.2"
+  }
+}
