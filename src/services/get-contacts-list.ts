@@ -27,7 +27,7 @@ export class GetContactsList {
     }
 
     validateData(): void {
-        let result = this.dataValidator.validate(this.dataFromProvider);
+        const result = this.dataValidator.validate(this.dataFromProvider);
         // @TODO handle validation not pass ....
         this.dataFromProvider.forEach((partner: any) => {
             this.partners.push(

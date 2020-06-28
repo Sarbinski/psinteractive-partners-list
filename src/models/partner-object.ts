@@ -4,11 +4,11 @@ export class PartnerObject implements IGeoPoint {
     private lng: number;
     private lat: number;
     private name: string;
-    private partner_id: number;
+    private partnerId: number;
 
     constructor(name: string, id: number, latitude: number, longitude: number) {
         this.name = name;
-        this.partner_id = id;
+        this.partnerId = id;
         this.lat = latitude;
         this.lng = longitude;
     }
@@ -18,7 +18,7 @@ export class PartnerObject implements IGeoPoint {
     }
 
     getId(): number {
-        return this.partner_id;
+        return this.partnerId;
     }
 
     getLat(): number {

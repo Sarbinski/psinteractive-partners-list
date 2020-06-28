@@ -42,7 +42,7 @@ export class ValidateData implements IValidator {
             );
         }
 
-        Object.keys(row as Object).forEach((key) => {
+        Object.keys(row as object).forEach((key) => {
             if (
                 !this.validatePropertiesAndType.hasOwnProperty(key) ||
                 typeof this.validatePropertiesAndType[key] !== (row as IIndexable)[key]
@@ -53,15 +53,5 @@ export class ValidateData implements IValidator {
                 );
             }
         });
-
-        // const result = this.validateProperties.reduce(function (a, b) {
-        //     return a && b in (row as Object);
-        // }, true);
-
-        // if (!result) {
-        //     throw new Error(
-        //         'Read row is not corresponding to the description. Missing some of the contact properties'
-        //     );
-        // }
     }
 }
