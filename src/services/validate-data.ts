@@ -24,21 +24,33 @@ export class ValidateData implements IValidator {
     }
 
     private validateRow(row: any) {
-        if (typeof row !== 'object' || row === null) {
+        if (row.constructor !== Object || row === null) {
             throw new Error(
-                'Read row is not corresponding to the description. The row is now an Object'
+                'Read row is not corresponding to the description. The row is not an Object'
             );
         }
 
+        const typeNotCorrectException = new Error(
+            'Read row is not corresponding to the description. ' +
+                'Some of the given type/s is not correct'
+        );
+
         Object.keys(row as object).forEach((key) => {
-            if (
-                !this.validatePropertiesAndType.hasOwnProperty(key) ||
-                typeof this.validatePropertiesAndType[key] !== (row as IIndexable)[key]
-            ) {
+            if (!this.validatePropertiesAndType.hasOwnProperty(key)) {
                 throw new Error(
                     'Read row is not corresponding to the description. ' +
-                        'Missing some of the contact properties, or given type is not correct'
+                        'Missing some of the partner properties'
                 );
+            } else if (
+                this.validatePropertiesAndType[key] === 'number' &&
+                isNaN((row as IIndexable)[key])
+            ) {
+                throw typeNotCorrectException;
+            } else if (
+                this.validatePropertiesAndType[key] !== 'number' &&
+                this.validatePropertiesAndType[key] !== typeof (row as IIndexable)[key]
+            ) {
+                throw typeNotCorrectException;
             }
         });
     }

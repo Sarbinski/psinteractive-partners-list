@@ -11,7 +11,7 @@ export class FileDataProvider extends DataProvider {
         try {
             readData = fs.readFileSync(filePath, 'utf-8').split('\n').filter(Boolean);
         } catch (e) {
-            console.error(e.message, `Unable to read file: ${filePath}`);
+            console.log(e.message, `Unable to read file: ${filePath}`);
             process.exit(1);
         }
         this.data = this.parseData(readData);

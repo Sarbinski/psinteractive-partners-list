@@ -1,0 +1,2 @@
+{"latitude": "42.1268151", "partner_id": 2, "name": "Devon Mac", "longitude": "24.7234766"}
+[1, 2]
