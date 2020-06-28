@@ -2,35 +2,23 @@ import { IValidator } from '../pakt/validator';
 import { IIndexable } from '../pakt/types/indexable-object';
 
 export class ValidateData implements IValidator {
-    private errors: string[] = [];
     private validatePropertiesAndType: IIndexable = [];
 
     constructor(validatePropertiesAndType: IIndexable) {
         this.validatePropertiesAndType = validatePropertiesAndType;
     }
 
-    getErrors(): string[] {
-        return this.errors;
-    }
-
     validate(data: any): boolean {
         if (!Array.isArray(data)) {
-            this.errors.push('Read data should be an Array.');
-            return false;
+            throw new Error('Read data should be an Array.');
         }
         if (!(data as any[]).length) {
-            this.errors.push('The read data is empty.');
-            return false;
+            throw new Error('The read data is empty.');
         }
 
-        try {
-            data.forEach((element) => {
-                this.validateRow(element);
-            });
-        } catch (e) {
-            this.errors.push(e.message);
-            return false;
-        }
+        data.forEach((element) => {
+            this.validateRow(element);
+        });
 
         return true;
     }

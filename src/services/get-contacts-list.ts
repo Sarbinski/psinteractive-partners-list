@@ -1,20 +1,22 @@
 import { DataProvider } from '../pakt/data-provider';
-import { ValidateData } from './validate-data';
-import { FilterByDistanceAndSort } from './filter-by-distance-and-sort';
-import { PartnerObject } from '../models/partner-object';
 import { IGeoPoint } from '../pakt/geo-point';
+import { IValidator } from '../pakt/validator';
+import { ISortAndFilter } from '../pakt/sort-and-filter';
+import { IPartnerData } from '../pakt/types/partner-data';
+import { PartnerObject } from '../models/partner-object';
+import { GeoObject } from '../models/geo-object';
 
 export class GetContactsList {
     private dataProvider: DataProvider;
-    private dataValidator: ValidateData;
-    private sortService: FilterByDistanceAndSort;
-    private partners: PartnerObject[] = [];
+    private dataValidator: IValidator;
+    private sortService: ISortAndFilter;
+    private partners: IPartnerData[] = [];
     private dataFromProvider: any;
 
     constructor(
         dataProvider: DataProvider,
-        dataValidator: ValidateData,
-        sortService: FilterByDistanceAndSort
+        dataValidator: IValidator,
+        sortService: ISortAndFilter
     ) {
         this.dataProvider = dataProvider;
         this.dataValidator = dataValidator;
@@ -31,7 +33,11 @@ export class GetContactsList {
         // @TODO handle validation not pass ....
         this.dataFromProvider.forEach((partner: any) => {
             this.partners.push(
-                new PartnerObject(partner.name, partner.partner_id, partner.latitude, partner.longitude)
+                new PartnerObject(
+                    partner.name,
+                    partner.partner_id,
+                    new GeoObject(partner.latitude, partner.longitude)
+                )
             );
         });
     }
@@ -41,7 +47,7 @@ export class GetContactsList {
         this.partners = this.sortService.sort(this.partners, 'asc');
     }
 
-    getPartnersList(): PartnerObject[] {
+    getPartnersList(): IPartnerData[] {
         return this.partners;
     }
 }
