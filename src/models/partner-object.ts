@@ -1,16 +1,15 @@
 import { IGeoPoint } from '../pakt/geo-point';
+import { IPartnerData } from '../pakt/types/partner-data';
 
-export class PartnerObject implements IGeoPoint {
-    private lng: number;
-    private lat: number;
+export class PartnerObject implements IPartnerData {
     private name: string;
     private partnerId: number;
+    private geoPoint: IGeoPoint;
 
-    constructor(name: string, id: number, latitude: number, longitude: number) {
+    constructor(name: string, id: number, geoPoint: IGeoPoint) {
         this.name = name;
         this.partnerId = id;
-        this.lat = latitude;
-        this.lng = longitude;
+        this.geoPoint = geoPoint;
     }
 
     getName(): string {
@@ -21,11 +20,7 @@ export class PartnerObject implements IGeoPoint {
         return this.partnerId;
     }
 
-    getLat(): number {
-        return this.lat;
-    }
-
-    getLng(): number {
-        return this.lng;
+    getGeoPoint(): IGeoPoint {
+        return this.geoPoint;
     }
 }

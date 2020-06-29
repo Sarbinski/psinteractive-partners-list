@@ -7,13 +7,14 @@ export class FileDataProvider extends DataProvider {
     }
 
     read(filePath: string) {
+        let readData: any[] = [];
         try {
-            const readData = fs.readFileSync(filePath, 'utf-8').split('\n').filter(Boolean);
-            this.data = this.parseData(readData);
+            readData = fs.readFileSync(filePath, 'utf-8').split('\n').filter(Boolean);
         } catch (e) {
-            console.error(`Unable to read file: ${filePath}`);
+            console.log(e.message, `Unable to read file: ${filePath}`);
             process.exit(1);
         }
+        this.data = this.parseData(readData);
     }
 
     private parseData(readData: any[]) {

@@ -1,8 +1,8 @@
-import { PartnerObject } from '../models/partner-object';
+import { IPartnerData } from './types/partner-data';
 
 export abstract class PrintPartnerData {
-    protected partners: PartnerObject[];
-    constructor(partners: PartnerObject[]) {
+    protected partners: IPartnerData[];
+    constructor(partners: IPartnerData[]) {
         this.partners = partners;
     }
 
