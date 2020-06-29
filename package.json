@@ -9,8 +9,7 @@
     "build": "rm -rf build/ && tsc",
     "lint": "tslint --project ./tsconfig.json",
     "test:execute": "jest tests/*",
-    "test:single": "jest tests/first*",
-    "test": "npm run build && npm run test:single"
+    "test": "npm run build && npm run test:execute"
   },
   "author": "Stanislav Sarbinski <stansarbinski@gmail.com>",
   "license": "MIT",
